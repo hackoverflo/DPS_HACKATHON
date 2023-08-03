@@ -31,6 +31,7 @@ def takeCommand():
     try:
         print("Recognizing...")    
         dash = r.recognize_google(audio, language='en-in')
+        dash = str(dash)
         print(f"User said: {dash}\n")
 
     except Exception as e:
@@ -110,7 +111,8 @@ def facts():
     speak(fact)
 
 def quiz():
-    grade = input("Primary, Secondary or Tertiary?")
+    speak("Enter level:- primary , secondary or tertiary")
+    grade = takeCommand()
     def secondaryQuiz():
         score = 0
         listQ = ['Which animal never drinks water?', 'Physical phase of life is called ?' , 'The Largest Cell is? ','Which is the Largest Human Cell?','The Total Number of Bones in the Human Body?']
@@ -123,6 +125,7 @@ def quiz():
             if que == listA[randInt].lower():
                 print('Correct Answer')
                 speak('Correct Answer')
+                
                 score +=1
             elif que != listA[randInt]:
                 print('Wrong Answer')
@@ -132,19 +135,20 @@ def quiz():
         speak(str(score) + "is your final score")
     def primaryQuiz():
         score = 0
-        listQ = ['The tree has a branch filled with green _____.', 'What part of the body helps you move?' , ' What star shines in the day and provides light? ','Which shape is a round?','Your hands have four fingers and a ____.']
+        listQ = ['The tree has a branch filled with green', 'What part of the body helps you move?' , ' What star shines in the day and provides light? ','Which shape is a laptop?','How many fingers does your hand have?']
 
-        listA = ['leaves','legs','sun','circle','thumb','Thumb']
+        listA = ['leaves','legs','sun','rectangle','5']
         for i in range(len(listQ)-1):
             randInt = random.randint(0,(len(listQ)-1))
             que1 = speak(listQ[randInt])
-            que = input(listQ[randInt])
+            que = takeCommand()
             if que == listA[randInt].lower():
                 print('Correct Answer')
                 score +=1
+                listQ.pop(randInt)
             elif que != listA[randInt]:
                 print('Wrong Answer')
-                score +=0
+                listQ.pop(randInt)
         print(str(score) + " is your final score")
         speak(str(score) + " is your final score")
 
@@ -167,11 +171,11 @@ def quiz():
         speak(str(score) + " is your final score")
 
 
-    if grade == 'Primary':
+    if grade == 'primary':
         primaryQuiz()
-    elif grade == 'Secondary':
+    elif grade == 'secondary':
         secondaryQuiz()
-    elif grade == 'Tertiary':
+    elif grade == 'tertiary':
         tertiaryQuiz()
     else:
         print(' no quiz available for you ')
@@ -254,5 +258,36 @@ def out():
     speakbutton.pack()
     speakbutton.place(x = '220', y = '200')
     output_box.mainloop()
+
+def recite():
+    score_reci = 0
+    listOfQ = [] 
+    listOfA = []
+    for i in range(5):
+        speak("Enter the Question: ")
+        quest = takeCommand()
+        speak("Enter the Answer for that question: ")
+        ans = takeCommand()
+        listOfQ.append(quest)
+        listOfA.append(ans)
+    # speak("Practice Time")
+    speak("Practice Time")
+    # speak("Enter your question")
+
+
+
+    for i in range(0,(len(listOfA)-1)):
+        randomN = random.randint(0,(len(listOfQ)-1))
+        speak(listOfQ[randomN])
+        q = takeCommand()
+        if (q==listOfA[randomN]):
+            speak('Correct Answer')
+            score_reci+=1
+            # speak("Correct Answer")
+        else:
+            print("Wrong answer")
+    if score_reci>=(5-1):
+        score+=1
+
 if __name__ == "__main__":
-    study_web()
+    quiz()
