@@ -29,7 +29,7 @@ canvas.grid(column=0, row=0, sticky=(tk.N, tk.W, tk.E, tk.S))
 canvas.bind("<Button-1>", xy)
 canvas.bind("<B1-Motion>", addLine)
 
-btn = Button(window, text = 'Delete', bg = 'black', foreground = 'white', command = lambda:canvas.delete('all'))
-btn.grid(column=3, row = 4)
+btn = Button(window, text = 'D\ne\nl\ne\nt\ne', bg = 'black', foreground = 'white', command = lambda:canvas.delete('all'), height = 26, font = ('Aerial', 15))
+btn.grid(column=1, row = 0)
 
 window.mainloop()
