@@ -237,7 +237,7 @@ def canvas():
         lastx, lasty = 0, 0
         def xy(event):
             global lastx, lasty
-            lastx, lasty = event.x, event.y
+            lastx, lasty = event.x, event.y 
 
         def addLine(event):
             global lastx, lasty
@@ -354,13 +354,8 @@ def games():
 
     window.mainloop()
 
-
-
-if __name__ == "__main__":
-    pass
 def game():
 	score = 0
-	font1 = pygame.font.SysFont('freesansbold.ttf',32)
 	textX = 10
 	textY = 10
 	 #lock for two hours and you have to open all the doors and buttons and find your way through
@@ -401,10 +396,6 @@ def game():
 		else:
 			return False
 
-	def showScore(x,y):
-		score = font1.render("Score: " + str(score), True, (255,255,255))
-		screen.blit(score, (x,y))
-
 	def spaceShip(spaceship):
 		screen.blit(spaceship,(spaceshipX,spaceshipY))
 
@@ -416,33 +407,7 @@ def game():
 		screen.blit(facts,(factsX,factsY))
 		screen.blit(games,(gamesX,gamesY))
 		screen.blit(questionAnnouncer,(questionAnnouncerX,questionAnnouncerY))
-		# screen.blit(station,(500,333))
-	def quizF():
-		pass
-		print('passed')
-	def visualsF():
-		global score
-		score += 1
-	def idea_boxF():
-		global score
-		score += 0.5
-	def jokesF():
-		global score
-		if score>=5:
-			pass #speak 10 jokes
-		else:
-			pass #speak 3 jokes only, these jokes will also be limited to one use per day
-	def factsF():
-		global score
-		score +=1 #alwyas open might as well give them extra fax
-	def gamesF():
-		global score
-		score+=1
 
-	def questionAnnouncerF():
-		pass
-		#requires level or score >= 7 to unlock or make the button even fucntional
-		#After that there will be 3 games inside
 	spaceshipYc = 0
 	spaceshipXc = 0
 	status = True
@@ -484,7 +449,7 @@ def game():
 			if score >= 3:
 				spaceship = pygame.image.load('edu\spaceship2.png')
 			spaceShip(spaceship)
-			quizF()
+			quiz()
 
 		if isCollision(spaceshipX,spaceshipY,visualsX,visualsY):
 			spaceshipX = 500
@@ -492,28 +457,28 @@ def game():
 			if score >= 3:
 				spaceship = pygame.image.load('edu\spaceship2.png')
 			spaceShip(spaceship)
-			visualsF()
+			visuals()
 		if isCollision(spaceshipX,spaceshipY, idea_boxX, idea_boxY):
 			spaceshipX = 500
 			spaceshipY = 333
 			if score >= 3:
 				spaceship = pygame.image.load('edu\spaceship2.png')
 			spaceShip(spaceship)
-			idea_boxF()
+			idea_box()
 		if isCollision(spaceshipX,spaceshipY,jokesX,jokesY):
 			spaceshipY =333
 			spaceshipX = 500
 			if score >= 3:
 				spaceship = pygame.image.load('edu\spaceship2.png')
 			spaceShip(spaceship)
-			jokesF()
+			jokes()
 		if isCollision(spaceshipX, spaceshipY, factsX, factsY):
 			spaceshipX = 500
 			spaceshipY = 333
 			if score >= 3:
 				spaceship = pygame.image.load('edu\spaceship2.png')
 			spaceShip(spaceship)
-			factsF()
+			facts()
 		if isCollision(spaceshipX, spaceshipY, gamesX, gamesY) and score>=5:
 			spaceshipX = 500
 			spaceshipY = 333
@@ -521,7 +486,7 @@ def game():
 			if score >= 3:
 				spaceship = pygame.image.load('spaceship2.png')
 			spaceShip(spaceship)
-			gamesF()
+			games()
 		if isCollision(spaceshipX,spaceshipY, questionAnnouncerX,questionAnnouncerY):
 			spaceshipX = 500
 			spaceshipY = 333
@@ -529,14 +494,13 @@ def game():
 			if score >=3:
 				spaceship = pygame.image.load('edu\spaceship2.png')
 			spaceship(spaceship)
-			questionAnnouncerF()
+			questionAnnouncer()
 		
 		spaceshipX += spaceshipXc
 		spaceshipY += spaceshipYc
 		screen.blit(bg,(0,0))
 		spaceShip(spaceship)
 		buttons()
-		showScore(textX,textY)
 		pygame.display.update()
 
 game()
