@@ -18,7 +18,7 @@ def games():
     def fid():
         from freegames import fidget
     def life():
-        from freegames import life
+        from freegames import memory
 
     btn1 = Button(window, text = 'Tiles game', bg = 'blue', foreground = 'white', height = 5, command = tiles, width = 10)
     btn1.pack()
@@ -36,9 +36,10 @@ def games():
     btn4.pack()
     btn4.place(x = 320, y = 110)
 
-    btn5 = Button(window, text = 'Life game',  bg = 'yellow', foreground = 'black', height = 5, command = life, width = 10)
+    btn5 = Button(window, text = 'Memory game',  bg = 'yellow', foreground = 'black', height = 5, command = life, width = 10)
     btn5.pack()
     btn5.place(x = 420, y = 110)
 
 
     window.mainloop()
+games()
